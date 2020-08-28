@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SearchRecipe from './components/searchRecipe';
 import SearchCategory from './components/searchCategory';
-import randomRecipes from './components/randomRecipes';
 import ViewRecipe from './components/viewRecipe';
 import RandomRecipe from './components/randomRecipe';
 
