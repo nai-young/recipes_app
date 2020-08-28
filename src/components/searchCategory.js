@@ -25,27 +25,26 @@ class SearchCategory extends Component {
       return <Card key={res.idMeal} style={{ width: '30rem' }}>
         <Card.Img variant="top" src={res.strMealThumb} alt={res.strMeal} />
         <Card.Title >{res.strMeal}</Card.Title>
-        <Button variant="info"><Link to={"/" + res.idMeal} className="details">Details</Link></Button>
+        <Button variant="info"><Link to={"/search/" + res.idMeal} className="details">Details</Link></Button>
       </Card>
     })
   }  
   getCategory = () => {
-    //this.props.history.push('/categories')
-    const cat = this.props.match.params.id
-    console.log(cat)
-    axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`)
-      .then(res => {
-        this.setState({
-          recipes: res.data.meals
-        })
+    const category = this.props.match.params.id
+    axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+    .then(res => {
+      this.setState({
+        recipes: res.data.meals
       })
-  } 
+      //this.props.history.push('/categories/' + category)
+    })
+  }
   listCategories = () => {
     return this.state.categories.map(category => {
-      return <li key={category.idCategory}>
-        <Link to={"/categories/" + category.strCategory}
-          onClick={this.getCategory} 
-          className="categ-link">
+      return <li key = {category.idCategory}>
+        <Link to = { "/categories/" + category.strCategory }
+          onClick = { this.getCategory } 
+          className = "categ-link">
             {category.strCategory}
         </Link>
       </li>

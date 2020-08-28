@@ -6,7 +6,6 @@ import SearchCategory from './components/searchCategory';
 import ViewRecipe from './components/viewRecipe';
 import RandomRecipe from './components/randomRecipe';
 
-
 function App() {
   return (
     <Router>
@@ -17,7 +16,7 @@ function App() {
         </div>
         <div className="content">
           <Route exact path="/search/:id" component={ViewRecipe}/>
-          <Route exact path="/categories/:id" component={SearchCategory}/>
+          <Route path="/categories/:id" component={SearchCategory}/>
           <Route exact path="/" component={RandomRecipe}/>
           <Route exact path="/" component={RandomRecipe}/>
           <Route exact path="/" component={RandomRecipe}/>
