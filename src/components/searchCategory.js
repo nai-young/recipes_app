@@ -1,48 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-import { Form, Card, Button, InputGroup, FormControl } from 'react-bootstrap';
+import { Link, withRouter } from 'react-router-dom'
+import { Card, Button } from 'react-bootstrap';
 
-/* import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch} from '@fortawesome/free-solid-svg-icons'
-library.add(faSearch) */
-
-export default class searchRecipe extends Component {
+class SearchCategory extends Component {
   constructor(props) {
     super(props)
     this.state = {
       recipes: [],
-      // category: '',
       categories: [],
       catId: ''
     }
   }
-  /* onChangeSearch = (e) => {
-    this.setState({
-      category: e.target.value
-    })
-  } */
-   listRecipes = () => {
-    return this.state.recipes.map(res => {
-      return <Card style={{ width: '30rem' }}>
-        <Card.Img variant="top" src={res.strMealThumb} alt={res.strMeal} />
-        <Card.Title >{res.strMeal}</Card.Title>
-        <Button variant="info"><Link to={"/" + res.idMeal} className="details">Details</Link></Button>
-      </Card>
-    })
-  } 
-  /* onSubmit = (e) => {
-    e.preventDefault()
-    const category = this.state.category
-    axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
-      .then(res => {
-        this.setState({
-          recipes: res.data.meals
-        })
-        console.log(res.data)
-      })
-  } */
   componentDidMount () {
     axios.get('https://www.themealdb.com/api/json/v1/1/categories.php')
       .then(res => {
@@ -51,34 +20,40 @@ export default class searchRecipe extends Component {
         })
       })
   }
-  listCat = (catName) => {
-    const cat = catName
+   listRecipes = () => {
+     return this.state.recipes.map(res => {
+      return <Card key={res.idMeal} style={{ width: '30rem' }}>
+        <Card.Img variant="top" src={res.strMealThumb} alt={res.strMeal} />
+        <Card.Title >{res.strMeal}</Card.Title>
+        <Button variant="info"><Link to={"/" + res.idMeal} className="details">Details</Link></Button>
+      </Card>
+    })
+  }  
+  getCategory = () => {
+    //this.props.history.push('/categories')
+    const cat = this.props.match.params.id
+    console.log(cat)
     axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`)
       .then(res => {
-        console.log(res.data.meals)
         this.setState({
           recipes: res.data.meals
         })
-      }) 
+      })
   } 
-
-   listCategories = () => {
+  listCategories = () => {
     return this.state.categories.map(category => {
-      return <li key={category.idCategory}><a className="categ-link">{category.strCategory}</a></li>
-    }) 
+      return <li key={category.idCategory}>
+        <Link to={"/categories/" + category.strCategory}
+          onClick={this.getCategory} 
+          className="categ-link">
+            {category.strCategory}
+        </Link>
+      </li>
+    })
   } 
   render () {
     return (
       <div>
-          {/* <Form onSubmit={this.onSubmit}>
-          <Form.Group >
-            <Form.Label>Search category</Form.Label>
-          <InputGroup >
-            <FormControl type="text" name="category" value={this.state.search} onChange={this.onChangeSearch} placeholder="Breakfast"/>
-            <Button variant="info" type="submit"><FontAwesomeIcon icon="search"/></Button>
-          </InputGroup>
-          </Form.Group>
-          </Form> */}
           <div className="categories-cont">
             <h3>Categories:</h3>
             <ul>
@@ -92,3 +67,5 @@ export default class searchRecipe extends Component {
     )
   }
 }
+
+export default withRouter(SearchCategory)

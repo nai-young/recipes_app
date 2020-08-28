@@ -31,10 +31,8 @@ class SearchRecipe extends Component {
         <Card.Title>{res.strMeal}</Card.Title>
           <Card.Text>{res.strInstructions.substring(0, 200) + '...'}</Card.Text>
           <ul className="list-options">
-            <li>Category:</li>
-            <strong>{res.strCategory}</strong>
-            <li>Area: </li>
-            <strong>{res.strArea}</strong>
+            <li>Category: <strong>{res.strCategory}</strong></li>
+            <li>Area: <strong>{res.strArea}</strong></li>
           </ul>
           <Link to={"/search/" + res.idMeal} onClick={this.deleteRecipes} className="details">Details</Link>
         </Card.Body>

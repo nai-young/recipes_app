@@ -86,7 +86,8 @@
 .list-options {
   display: flex;
   margin-left: 0;
-  padding: 0;
+  padding: 0 .5rem;
+  justify-content: space-between;
   list-style: none;
 }
 .details {
