@@ -25,7 +25,7 @@ class SearchRecipe extends Component {
   }
   listRecipes = () => { 
     return this.state.recipes.map(res => {
-      return <Card style={{ width: '30rem' }}>
+      return <Card style={{ width: '20rem' }} className="search-card">
         <Card.Img variant="top" src={res.strMealThumb} alt={res.strMeal} />
         <Card.Body>
         <Card.Title>{res.strMeal}</Card.Title>
@@ -36,7 +36,7 @@ class SearchRecipe extends Component {
             <li>Area: </li>
             <strong>{res.strArea}</strong>
           </ul>
-          <button onClick={this.deleteRecipes} variant="info"><Link to={"/search/" + res.idMeal}  className="details">Details</Link></button>
+          <Link to={"/search/" + res.idMeal} onClick={this.deleteRecipes} className="details">Details</Link>
         </Card.Body>
       </Card>
     })
@@ -54,7 +54,8 @@ class SearchRecipe extends Component {
   }
   render () {
     return (
-      <div className="search-name">
+      <div className="search-container">
+        <div className="search-name">
           <Form onSubmit={this.onSubmit} className="search-name-cont">
             <Form.Group >
             <Form.Label className="label-name">Search Recipe</Form.Label>
@@ -64,7 +65,8 @@ class SearchRecipe extends Component {
             </InputGroup>
             </Form.Group>
           </Form>
-        <div className="content">
+        </div>
+        <div className="content-search">
           {this.listRecipes()}
         </div>
       </div>

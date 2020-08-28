@@ -9,7 +9,7 @@
   background-color: #e8ded2;
 }
 /* Search by name */
-.search-cont {
+.search-container {
   width: 100%;
   margin: 0 auto;
   padding-top: 1.5rem;
@@ -18,7 +18,15 @@
   width: 35%;
   margin: 0 auto;
 }
-
+.content-search {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+.search-card {
+  margin-bottom: 2rem;
+}
 .label-name {
   text-align: center;
   width: 100%;
@@ -70,6 +78,7 @@
   margin-top: 2rem;
 }
 
+
 /* Card item */
 .card {
   box-shadow: 0 .25em .25em -.125em rgba(0,0,0,.25), 0 .5em 1.25em rgba(0,0,0,.5);
@@ -83,7 +92,27 @@
 .details {
   color: white;
   text-decoration: none;
+  background-color: #17a2b8;
+  padding: .6rem 1rem;
+  border-radius: 5%;
 }
 .details:hover {
   color: white;
+}
+
+/* View Recipe */
+.view-container {
+  width: 60%;
+ 
+}
+.view-link {
+  position: fixed;
+  top: 2rem;
+  left: 5rem;
+}
+.view-img {
+  display: block;
+  max-width: 70%;
+  margin: 2rem auto;
+  border-radius: 1%;
 }

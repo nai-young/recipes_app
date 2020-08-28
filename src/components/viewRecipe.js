@@ -20,9 +20,9 @@ export default class ViewRecipe extends Component {
   }
   listRecipe = () => {
     return this.state.recipe.map(res => {
-      return <div>
+      return <div className="view-content">
         <h2 name="recipe-title">{res.strMeal}</h2>
-        <img src={res.strMealThumb} alt={res.strMeal} />
+        <img className="view-img" src={res.strMealThumb} alt={res.strMeal} />
         <p>{res.strInstructions}</p>
         <ul>
           <li>Category:</li>
@@ -30,14 +30,20 @@ export default class ViewRecipe extends Component {
           <li>Area: </li>
           <strong>{res.strArea}</strong>
         </ul>
+        <h3>Video Explanation</h3>
+        <video width="800" height="300" controls>
+          <source src={res.strYoutube} type="video/mp4"/>
+          Your browser does not support the video tag.
+        </video>
+        
       </div>
     })
   }
   render () {
     return(
-      <div className="recipe-item">
-      <div>
-        <Link to="/">Back to Home</Link>
+      <div className="view-container">
+      <div >
+        <Link to="/" className="view-link">Back to Home</Link>
       </div>
       {this.listRecipe()}
     </div>
