@@ -34,7 +34,7 @@ export default class RandomRecipe extends Component {
               <li>Category: <strong>{res.strCategory}</strong></li>
               <li>Area: <strong>{res.strArea}</strong></li>
             </ul>
-            <Button variant="info"><Link to={"/search/" + res.idMeal} className="details">Details</Link></Button>
+            <Link to={"/search/" + res.idMeal} className="details">Details</Link>
           </Card.Body>
         </Card>
       </div>

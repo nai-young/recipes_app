@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+library.add(faArrowLeft)
+
 export default class ViewRecipe extends Component {
   constructor(props) {
     super(props)
@@ -43,7 +48,7 @@ export default class ViewRecipe extends Component {
     return(
       <div className="view-container">
       <div >
-        <Link to="/" className="view-link">Back to Home</Link>
+        <Link to="/" className="view-link"><FontAwesomeIcon icon="arrow-left"/> Back to Home</Link>
       </div>
       {this.listRecipe()}
     </div>

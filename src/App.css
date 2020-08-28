@@ -109,6 +109,10 @@
   position: fixed;
   top: 2rem;
   left: 5rem;
+  color: #000000;
+}
+.view-link:hover{
+  color: #000000;
 }
 .view-img {
   display: block;
